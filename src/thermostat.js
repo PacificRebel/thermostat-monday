@@ -3,8 +3,8 @@
 
 function Thermostat () {
   this.MINIMUM_TEMP = 10;
-  this._temp = 20;
   this.DEFAULT_TEMP = 20;
+  this._temp = this.DEFAULT_TEMP;
   this.MAX_LIMIT_PSM_ON = 25;
   this.MAX_LIMIT_PSM_OFF = 32;
   this.LOW_USAGE_UPPER_LIMIT = 18;
@@ -40,10 +40,20 @@ Thermostat.prototype.isMaximumTemp = function() {
 
 Thermostat.prototype.powerSaveOn = function() {
   this._maximumTemp = this.MAX_LIMIT_PSM_ON;
+  this._temp = 25;
 };
 
 Thermostat.prototype.powerSaveOff = function() {
   this._maximumTemp = this.MAX_LIMIT_PSM_OFF;
+};
+
+Thermostat.prototype.powerSave = function() {
+  if (this._maximumTemp === this.MAX_LIMIT_PSM_OFF){
+    this.powerSaveOn();
+  }
+  else {
+    this.powerSaveOff();
+  };
 };
 
 Thermostat.prototype.reset = function() {

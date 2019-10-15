@@ -42,6 +42,17 @@ describe('Thermostat', function() {
     expect(thermostat._maximumTemp).toEqual(32)
   });
 
+  it('turns power save off if on', function () {
+    thermostat.powerSave();
+    expect(thermostat._maximumTemp).toEqual(32)
+  });
+
+  it('turns power save on if off', function () {
+    thermostat.powerSaveOff();
+    thermostat.powerSave();
+    expect(thermostat._maximumTemp).toEqual(25)
+  });
+
   it('user cannot increase temperature beyond 32', function () {
     thermostat.powerSaveOff();
     for (var i = 20; i < 33; i++) {
