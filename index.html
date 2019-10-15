@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+​
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Thermostat</title>
+​
+    <script src="src/thermostat.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
+  </head>
+  <body>
+
+
+  <script src="src/interface.js"></script>
+<script>
+$(document).ready(function(){
+  var thermostat = new Thermostat();
+  updateTemperature();
+
+  $('#increase').click(function(){
+    thermostat.up();
+    updateTemperature();
+  })
+
+  function updateTemperature() {
+    $('h1').text(thermostat.getCurrentTemp);
+  });
+});
+</script>
+
+
+    <button id="increase">Increase temperature</button>
+    <button id="decrease">Decrease temperature</button>
+    <button id="reset temperature">reset temperature</button>
+    <h1 id="temperature"></h1>
+
+    <button id="Powersave">Powersave</button>
+    <div id="powersave status"></div>
+
+    <div id="energy usage"></div>
+  </body>
+</html>
