@@ -4,7 +4,7 @@
 function Thermostat () {
   this.MINIMUM_TEMP = 10;
   this._temp = 20;
-  this.maximumTemp = 25;
+  this._maximumTemp = 25;
 };
 
 Thermostat.prototype.getCurrentTemp = function() {
@@ -30,13 +30,13 @@ Thermostat.prototype.isMinimumTemp = function() {
 };
 
 Thermostat.prototype.isMaximumTemp = function() {
-  return this._temp === this.maximumTemp;
+  return this._temp === this._maximumTemp;
 }
 
 Thermostat.prototype.powerSaveOn = function() {
-  this.maximumTemp = 25;
+  this._maximumTemp = 25;
 };
 
 Thermostat.prototype.powerSaveOff = function() {
-  this.maximumTemp = 32;
+  this._maximumTemp = 32;
 };

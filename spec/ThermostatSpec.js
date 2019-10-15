@@ -30,16 +30,16 @@ describe('Thermostat', function() {
 
   it('if power saving mode is on, maximum temp is 25', function () {
     thermostat.powerSaveOn();
-    expect(thermostat.maximumTemp).toEqual(25)
+    expect(thermostat._maximumTemp).toEqual(25)
   });
 
   it('if power saving mode is on by default, maximum temp is 25', function () {
-    expect(thermostat.maximumTemp).toEqual(25)
+    expect(thermostat._maximumTemp).toEqual(25)
   });
 
   it('if power saving mode is off, maximum temp is 32', function () {
     thermostat.powerSaveOff();
-    expect(thermostat.maximumTemp).toEqual(32)
+    expect(thermostat._maximumTemp).toEqual(32)
   });
 
    it('user cannot increase temperature beyond 32', function () {
