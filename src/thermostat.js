@@ -4,7 +4,9 @@
 function Thermostat () {
   this.MINIMUM_TEMP = 10;
   this._temp = 20;
-  this._maximumTemp = 25;
+  this.MAX_LIMIT_PSM_ON = 25;
+  this.MAX_LIMIT_PSM_OFF = 32;
+  this._maximumTemp = this.MAX_LIMIT_PSM_ON;
 };
 
 Thermostat.prototype.getCurrentTemp = function() {
@@ -34,9 +36,9 @@ Thermostat.prototype.isMaximumTemp = function() {
 }
 
 Thermostat.prototype.powerSaveOn = function() {
-  this._maximumTemp = 25;
+  this._maximumTemp = this.MAX_LIMIT_PSM_ON;
 };
 
 Thermostat.prototype.powerSaveOff = function() {
-  this._maximumTemp = 32;
+  this._maximumTemp = this.MAX_LIMIT_PSM_OFF;
 };
