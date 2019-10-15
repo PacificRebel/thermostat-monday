@@ -42,11 +42,41 @@ describe('Thermostat', function() {
     expect(thermostat._maximumTemp).toEqual(32)
   });
 
-   it('user cannot increase temperature beyond 32', function () {
-     thermostat.powerSaveOff();
-     for (var i = 20; i < 33; i++) {
-       thermostat.up();
-     }
-    expect(thermostat.getCurrentTemp()).toEqual(32)
-   })
+  it('user cannot increase temperature beyond 32', function () {
+    thermostat.powerSaveOff();
+    for (var i = 20; i < 33; i++) {
+      thermostat.up();
+    }
+  expect(thermostat.getCurrentTemp()).toEqual(32)
+  });
+
+  it('user can reset and bring the temperature back to 20', function (){
+    thermostat.up();
+    expect(thermostat.getCurrentTemp()).toEqual(21)
+    thermostat.reset();
+    expect(thermostat.getCurrentTemp()).toEqual(20)
+  });
+
+it('tells the user enegry usage is low', function(){
+  for (var i = 20; i > 17; i--) {
+    thermostat.down();
+  }
+  expect(thermostat.getCurrentTemp()).toEqual(17)
+  expect(thermostat.getEnergyUsage()).toEqual('low-usage')
+});
+
+it('tells the user enegry usage is medium', function(){
+  expect(thermostat.getCurrentTemp()).toEqual(20)
+  expect(thermostat.getEnergyUsage()).toEqual('medium-usage')
+});
+
+it('tells the user enegry usage is high', function(){
+  thermostat.powerSaveOff();
+  for (var i = 20; i < 26; i++) {
+    thermostat.up();
+  }
+  expect(thermostat.getCurrentTemp()).toEqual(26)
+  expect(thermostat.getEnergyUsage()).toEqual('high-usage')
+});
+
 });
